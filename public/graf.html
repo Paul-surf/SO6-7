@@ -25,7 +25,9 @@
   <script src="chart-demo.js"></script>
   <script>
     var ctx = document.getElementById("myChart").getContext("2d");
-      const xValues = [1, 2, 3, 4, 5];
+      const xValues = ['timestamp','timestamp','timestamp','timestamp',
+      'timestamp','timestamp','timestamp','timestamp','timestamp','timestamp',
+      'timestamp','timestamp','timestamp',];
     
     fetch('/api/temperature')
         .then(response => response.json())
@@ -50,9 +52,9 @@
         labels: xValues,
         datasets: [
           {
-            label: "Fixed dataset",
+            label: "Graf over temperatur",
             borderColor: "rgb(132, 99, 255)",
-            data: [20, 30, 5, 2, 24, 13, 25, 40],
+            data: [4, 5, 6 ,4 ,5 ,1 ,2 ,7,2,6,4,2,7,4,3],
           }
         ]
       },
