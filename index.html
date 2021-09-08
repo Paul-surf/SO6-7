@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 
+    Filerne Package-json er til for og kunne kommunikere
+    med arduino'en, ved hjælp af node.js altså et javascript lib    
+    -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Køleskab</title>
+    <style>
+        /*Style bliver skrevet i headeren, 
+    fordi vi starter vores localhost server
+    ved hjælp af node.js og den kalder på
+    vores index.html hvorfra den ikke tager imod 
+    links til andre filer.
+    Bare simpel CSS
+    */
+        body {
+            background: rgb(23, 27, 46);
+            color: white;
+            font-family: manrope, sanserif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 800;
+        }
+
+        .tempText {
+            padding: 5px;
+            border: 5px solid white;
+            font-size: 40px;
+            margin-top: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Titel på siden -->
+    <h1>Temperatur I Køleskab</h1>
+
+    <!-- Kassen der displayer temperaturen -->
+    <div class="tempText" id="temp"></div>
+
+    <!-- Her ændrer vi værdien af id="temp" med data'en fra arduino -->
+    <script>
+        // Her henviser vi til vores socket io lib
+        var socket = io();
+
+        //her henter vi data'en vi får fra arduino'en
+        socket.on('data', function (data) {
+
+            // Console.log viser hvad der bliver spyttet ud i Consolen
+            console.log(data);
+            // Her ændre vi værdien i temp
+            // Hver gang der er en ny temperatur ændre den sig
+            document.getElementById('temp').innerHTML = data;
+        });
+
+    </script>
+    <canvas id="myChart" height="100px" width="300px"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="chart-demo.js"></script>
+    <!-- <script>
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+const xValues = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "September"
+];
+
+var chart = new Chart(ctx, {
+  // The type of chart we want to create
+  type: "line",
+
+  // The data for our dataset
+  data: {
+    labels: xValues,
+    datasets: [
+      {
+        label: "Fixed dataset",
+        borderColor: "rgb(132, 99, 255)",
+        data: [20, 30, 5, 2, 24, 13, 25, 40],
+      }
+    ]
+  },
+});
+    </script> -->
+    <form action="graf.html">
+        <input type="submit" value="Se graf">
+    </form>
+</body>
+
+</html>

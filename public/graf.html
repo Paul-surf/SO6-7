@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: rgb(23, 27, 46);
+      color: white;
+      font-family: manrope, sanserif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myChart" height="100px" width="300px"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="chart-demo.js"></script>
+  <script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+      const xValues = [1, 2, 3, 4, 5];
+    
+    fetch('/api/temperature')
+        .then(response => response.json())
+        .then(apiData);
+
+        function apiData(data) {
+          console.log(data)
+          xValues[0] = data[0].temp;
+        }
+
+   
+
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: "line",
+
+
+//https://www.youtube.com/watch?v=5-ptp9tRApM&t=925s
+
+      // The data for our dataset
+      data: {
+        labels: xValues,
+        datasets: [
+          {
+            label: "Fixed dataset",
+            borderColor: "rgb(132, 99, 255)",
+            data: [20, 30, 5, 2, 24, 13, 25, 40],
+          }
+        ]
+      },
+    });
+  </script>
+  <form action="/">
+    <input type="submit" value="Go back">
+  </form>
+</body>
+
+</html>
