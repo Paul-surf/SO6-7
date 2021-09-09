@@ -33,12 +33,8 @@
     fetch('/api/temperature')
         .then(response => response.json())
         .then(apiData);
-<<<<<<< HEAD
-      
-
-=======
+        
       // Her prøvede vi og ændre X værdien på x-aksen
->>>>>>> 7fae9c744fd1669cdc45d0bd79c81852cd9463d0
         function apiData(data) {
           console.log(data)
           xValues[0] = data[0].time;
