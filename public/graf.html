@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  <!-- Her skaber vi vores graf's html -->
   <canvas id="myChart" height="100px" width="300px"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="chart-demo.js"></script>
@@ -28,27 +29,28 @@
       const xValues = ['timestamp','timestamp','timestamp','timestamp',
       'timestamp','timestamp','timestamp','timestamp','timestamp','timestamp',
       'timestamp','timestamp','timestamp',];
-    
+    // Her fetchede vi data fra server.js
     fetch('/api/temperature')
         .then(response => response.json())
         .then(apiData);
+<<<<<<< HEAD
       
 
+=======
+      // Her prøvede vi og ændre X værdien på x-aksen
+>>>>>>> 7fae9c744fd1669cdc45d0bd79c81852cd9463d0
         function apiData(data) {
           console.log(data)
-          xValues[0] = data[0].temp;
+          xValues[0] = data[0].time;
         }
 
    
 
     var chart = new Chart(ctx, {
-      // The type of chart we want to create
+      // Typen af graf vi vil have
       type: "line",
 
-
-//https://www.youtube.com/watch?v=5-ptp9tRApM&t=925s
-
-      // The data for our dataset
+      // Dataen til datasættet for og have noget fiktivt data
       data: {
         labels: xValues,
         datasets: [
